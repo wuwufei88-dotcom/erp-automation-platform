@@ -1,0 +1,38 @@
+# Microsoft Dynamics 365 Business Central Provider (企业级)
+# https://dynamics.microsoft.com/
+
+name: "Dynamics 365 Business Central"
+provider: "Dynamics365"
+description: "Microsoft Dynamics 365 Business Central，全球主流企业级 ERP 系统"
+website: "https://dynamics.microsoft.com"
+api_style: "odata"
+
+auth:
+  type: "oauth2_client"
+  token_url: "https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
+  token_header: "Authorization: Bearer"
+  credential_label: "Client ID"
+  secret_label: "Client Secret"
+  extra_params:
+    scope: "https://api.businesscentral.dynamics.com/.default"
+    grant_type: "client_credentials"
+
+response:
+  success_path: ""  # OData uses HTTP status
+  error_path: "error.message"
+  token_path: "access_token"
+  odata: true
+  odata_wrapper: "value"
+
+entity_paths:
+  health: "/v2.0/$metadata"
+  tenant: "/v2.0/companies"
+  org: "/v2.0/companies({company_id})/departments"
+  user: "/v2.0/companies({company_id})/users"
+  role: "/v2.0/companies({company_id})/roles"
+  approval_flow: "/v2.0/companies({company_id})/workflows"
+
+tenant_isolation:
+  type: "url_param"
+  header_name: "company_id"
+default_base_url: "https://api.businesscentral.dynamics.com/v2.0"

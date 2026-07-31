@@ -1,0 +1,35 @@
+# Odoo ERP Provider (开源)
+# https://www.odoo.com/
+
+name: "Odoo"
+provider: "Odoo"
+description: "Odoo 开源 ERP，覆盖销售、财务、人力资源、制造等模块"
+website: "https://www.odoo.com"
+api_style: "rest"
+
+auth:
+  type: "api_key"
+  token_url: ""  # API key is passed directly
+  token_header: "Authorization: Bearer"
+  credential_label: "数据库名"
+  secret_label: "API Key"
+  extra_headers:
+    X-Odoo-Database: "{credential_key}"
+
+response:
+  success_path: ""  # HTTP status determines success
+  error_path: "error"
+  token_path: ""  # API key is used directly
+
+entity_paths:
+  health: "/json/2/res.partner/search_read"
+  tenant: "/json/2/hr.department/create"
+  org: "/json/2/hr.department/create"
+  user: "/json/2/res.users/create"
+  role: "/json/2/res.groups/create"
+  approval_flow: "/json/2/hr.workflow/create"
+
+tenant_isolation:
+  type: "database"
+  header_name: "X-Odoo-Database"
+default_base_url: "http://localhost:8069"

@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+.venv/
+venv/
+
+# Node
+node_modules/
+.vite/
+.pnpm-store/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated/demo files
+*.pptx
+*.xlsx
+*.pdf
+
+# Logs
+*.log
+
+# Docker volumes
+mysql_data/
+minio_data/
+milvus_data/
+
+# Local config
+.env.local
+.claude/
+
+# Frontend build artifacts
+frontend/dist/
+frontend/_launch.bat
+frontend/.npmrc
+
+# Database
+*.db
+
+# Root artifacts
+package-lock.json
+JeecgBoot/
+
+# Temp
+temp/
+/tmp/
+*.tmp

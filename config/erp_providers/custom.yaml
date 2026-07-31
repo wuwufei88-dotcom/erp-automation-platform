@@ -1,0 +1,33 @@
+# 自定义 REST API Provider
+# 对接任意符合 RESTful 规范的 ERP 系统
+
+name: "自定义 REST API"
+provider: "Custom"
+description: "自定义 REST API 连接，可对接任意 ERP 系统"
+website: ""
+api_style: "rest"
+
+auth:
+  type: "none"  # 可选: none, basic, static_token, oauth2_password, oauth2_client, api_key
+  token_url: ""
+  token_header: "Authorization: Bearer"
+  credential_label: ""
+  secret_label: ""
+
+response:
+  success_path: ""
+  error_path: ""
+  token_path: ""
+
+entity_paths:
+  health: "/health"
+  tenant: ""
+  org: ""
+  user: ""
+  role: ""
+  approval_flow: ""
+
+tenant_isolation:
+  type: "none"
+  header_name: ""
+default_base_url: ""

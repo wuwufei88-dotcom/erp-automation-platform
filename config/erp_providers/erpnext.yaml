@@ -1,0 +1,33 @@
+# ERPNext / Frappe Framework Provider (开源)
+# https://erpnext.com/
+
+name: "ERPNext"
+provider: "ERPNext"
+description: "ERPNext 开源 ERP，基于 Frappe 框架，覆盖财务、HR、制造、CRM 等"
+website: "https://erpnext.com"
+api_style: "rest"
+
+auth:
+  type: "oauth2_password"
+  token_url: "/api/method/login"
+  token_header: "Authorization: Bearer"
+  credential_label: "用户名"
+  secret_label: "密码"
+
+response:
+  success_path: "message.success_key"  # Frappe returns home_page on success
+  error_path: "exc_type"
+  token_path: ""
+
+entity_paths:
+  health: "/api/method/frappe.realtime.ping"
+  tenant: "/api/resource/Company"
+  org: "/api/resource/Department"
+  user: "/api/resource/User"
+  role: "/api/resource/Role"
+  approval_flow: "/api/resource/Workflow"
+
+tenant_isolation:
+  type: "company"
+  header_name: ""
+default_base_url: "http://localhost:8000"

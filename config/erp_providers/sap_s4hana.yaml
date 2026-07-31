@@ -1,0 +1,35 @@
+# SAP S/4HANA Cloud Provider (企业级)
+# https://www.sap.com/products/s4hana-erp.html
+
+name: "SAP S/4HANA"
+provider: "SAP"
+description: "SAP S/4HANA Cloud，全球最大的企业级 ERP 系统"
+website: "https://www.sap.com/products/s4hana-erp.html"
+api_style: "odata"
+
+auth:
+  type: "oauth2_client"
+  token_url: "/oauth2/token"
+  token_header: "Authorization: Bearer"
+  credential_label: "Client ID"
+  secret_label: "Client Secret"
+
+response:
+  success_path: ""  # OData uses HTTP status
+  error_path: "error.message.value"
+  token_path: "access_token"
+  odata: true
+  odata_wrapper: "d"
+
+entity_paths:
+  health: "/sap/opu/odata/sap/API_ORGUNIT_SRV/$metadata"
+  tenant: "/sap/opu/odata/sap/API_ORGUNIT_SRV/A_OrgUnit"
+  org: "/sap/opu/odata/sap/API_ORGUNIT_SRV/A_OrgUnit"
+  user: "/sap/opu/odata/sap/API_BUSINESS_USER_SRV/A_BusinessUser"
+  role: "/sap/opu/odata/sap/API_BUSINESS_ROLE_SRV/A_BusinessRole"
+  approval_flow: "/sap/opu/odata/sap/API_WORKFLOW_SRV/A_WorkflowDefinition"
+
+tenant_isolation:
+  type: "header"
+  header_name: "sap-client"
+default_base_url: "https://my-s4hana-api.s4hana.ondemand.com"
